@@ -26,9 +26,10 @@ def send_messages(command_set):
     for i in command_set:
         serial.write(i)
         utime.sleep(.25)
-        add = serial.read(1000)
-        serial.read(1000)
-        ans.append(add)
+        add1 = serial.read(1000)
+        add2 = serial.read(1000)
+        ans.append(add1)
+        ans.append(add2)
         
     return ans
 

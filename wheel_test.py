@@ -9,16 +9,13 @@ power = hub.port.B.pwm(100)
 test = hub.port.A.motor
 test.mode(2)
 
-
-
-
 ssid = 'FiOS-9Y9Z9'
 pswd = 'tux6789duck210gate'
 API_Key = 'keyjYRqlJJ5SLlnrS'
 BaseID = 'appWe18qoA5NGrZ9G'
 urlBase = "https://api.airtable.com/v0/"
 Table = 'Table 1'
-Field = 'data2'
+Field = 'data1'
 Value = 'SpikeSaysHi!'
 
 
@@ -58,8 +55,8 @@ print(ans)
 while True:
     ans2 = send_messages(command_set_get)
     leng = len(ans2)
-    reply = ans2(leng-1)
-    sort = reply.replace('print(a)','')
+    reply = ans2[leng -1]
+    sort = reply.replace('print(ans)','')
     print(sort)
     if sort == '1':
         motor.pwm(50)
