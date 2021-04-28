@@ -46,6 +46,13 @@ command_set_wifi = ['wifi=network.WLAN','(network.STA_IF)\r\n','wifi.active(True
 
 ans = send_messages(command_set_setup)
 
+def extract_command(last_command):
+    step_one = last_command.replace('\r\n','')
+    step_two = step_one.replace('print(a)','')
+    step_three = step_two.replace('>>>','')
+    step_four = step_three.replace(' ','')
+    return step_four
+
 print(ans)
 ans = send_messages(command_set_wifi)
 print(ans)
@@ -54,8 +61,8 @@ while True:
     ans2 = send_messages(command_set_get)
     print(ans2)
     serial.write('\r\n')
-    serial.read(1000)
+    trash1 = serial.read(1000)
     serial.write('\r\n')
-    serial.read(1000)
+    trash2 = serial.read(1000)
     tally +=1
     print(tally)
