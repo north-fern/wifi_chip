@@ -4,6 +4,7 @@ serial = hub.port.B
 serial.mode(hub.port.MODE_FULL_DUPLEX)
 serial.baud(115200)
 power = hub.port.B.pwm(100)
+force = hub.port.C.device
 
 
 ssid = 'FiOS-9Y9Z9'
@@ -12,8 +13,6 @@ API_Key = 'keyjYRqlJJ5SLlnrS'
 BaseID = 'appWe18qoA5NGrZ9G'
 urlBase = "https://api.airtable.com/v0/"
 Table = 'Table 1'
-Field = 'data1'
-Value = 'SpikeSaysHi!'
 
 
 serial.write('\r\n')
@@ -32,6 +31,10 @@ def send_messages(command_set):
         ans.append(add2)
         
     return ans
+
+def get_time():
+    time_now = utime.ticks_ms()
+    return time_now
 
 
 #based on milan's airtable.py command set
@@ -57,18 +60,15 @@ def extract_command(last_command):
 print(ans)
 ans = send_messages(command_set_wifi)
 print(ans)
-tally = 0
+
 while True:
-    ans2 = send_messages(command_set_get)
-    print(ans2)
-    print('')
-    last = len(ans2)
-    print(ans2[last-2])
-    reply = extract_command(ans2[last-2])
-    print(reply)
-    serial.write('\r\n')
-    trash1 = serial.read(1000)
-    serial.write('\r\n')
-    trash2 = serial.read(1000)
-    tally +=1
-    print(tally)
+    if force.is_pressed():
+        time_string = get_time()
+        Value = time_string.string()
+        Field = 'data2'
+        ans2 = send_messages(command_set_put)
+        print(ans2)
+        serial.write('\r\n')
+        trash1 = serial.read(1000)
+        serial.write('\r\n')
+        trash2 = serial.read(1000)
