@@ -50,9 +50,7 @@ def get_time():
     time_now= utime.ticks_ms()
     return time_now
 
-
 #based on milan's airtable.py command set
-
 
 ans = send_messages('setup','','')
 
