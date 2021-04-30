@@ -72,12 +72,9 @@ print(ans)
 def play_tune(tune):
     #https://pages.mtu.edu/~suits/notefreqs.html
     for i in tune:
+        print(i)
         hub.sound.beep(sound_dict[i])
         utime.sleep(.25)
-
-
-
-
 
 while True:
     Value = ''
