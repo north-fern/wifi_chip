@@ -20,6 +20,8 @@ serial.write('\r\n')
 utime.sleep(1)
 serial.read(1000)
 serial.read(1000)
+
+#based on milan's airtable.py command set
 def send_messages(command_set,Field,Value):
     ans = []
     command_set_put = ['headers = {"Accept"',':"applicaiton/json",','"Content-Type":"appli','cation/json","Auth','orization":"Bearer " + "', API_Key,'"}\r\n', 'urlValue ="', urlBase ,'" + "', BaseID, '" + "/" + "', Table.replace(" ","%20"), '"\r\n', 'propValue={"records"',':[{"fields":{"',Field,'":"',Value,'"} } ]}\r\n','val=urequests.post','(urlValue,headers=headers,','json=propValue).text\r\n','data=ujson.loads(val)\r\n','result=data.get(','"records")[-1]','.get("id")\r\n','print(result)\r\n']
@@ -49,8 +51,6 @@ def send_messages(command_set,Field,Value):
 def get_time():
     time_now= utime.ticks_ms()
     return time_now
-
-#based on milan's airtable.py command set
 
 ans = send_messages('setup','','')
 
