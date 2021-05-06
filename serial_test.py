@@ -10,7 +10,7 @@ serial = hub.port.B
 serial.mode(hub.port.MODE_FULL_DUPLEX)
 serial.baud(115200)
 a = serial.read(1000)
-serial.write('abcdefghijklmnopqrstuvwxyz1234567890!?#$%^&')
+#serial.write('abcdefghijklmnopqrstuvwxyz1234567890!?#$%^&')
 #serial.read(1000)
 utime.sleep(.55)
 b = serial.read(1000)

@@ -11,6 +11,8 @@ import hub, utime
 
 class Airtable:
     urlBase = "https://api.airtable.com/v0/"
+
+    #command set based on airtable.py by milan dahal!
     command_set_put = ['headers = {"Accept"',':"applicaiton/json",','"Content-Type":"appli','cation/json","Auth','orization":"Bearer " + "', self.api_key,'"}\r\n', 'urlValue ="', urlBase ,'" + "', self.base_id, '" + "/" + "', Table.replace(" ","%20"), '"\r\n', 'propValue={"records"',':[{"fields":{"',Field,'":"',Value,'"} } ]}\r\n','val=urequests.post','(urlValue,headers=headers,','json=propValue).text\r\n','data=ujson.loads(val)\r\n','result=data.get(','"records")[-1]','.get("id")\r\n','print(result)\r\n']
     command_set_get = ['headers = {"Accept"',':"applicaiton/json",','"Content-Type":"appli','cation/json","Auth','orization":"Bearer " + "', self.api_key,'"}\r\n', 'urlValue ="', urlBase ,'"+"', self.base_id, '"+ "/" + "', Table.replace(" ","%20"), '"+"?view=Grid%20view"\r\n', 'val = urequests.get(','urlValue,headers=headers)','.text\r\n', 'data = ujson.loads(val)\r\n','ans = data.get("records")','[-1].get("fields")','.get("',Field,'")\r\n','print(ans)\r\n']
     command_set_setup = ['import network \r\n','import ujson \r\n','import urequests\r\n', 'import os \r\n']
