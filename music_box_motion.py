@@ -1,3 +1,10 @@
+'''
+code that takes information from field 'abcde' in Table 1
+and uses it to find new information in table Songs!
+
+'''
+
+
 import hub, utime
 
 serial = hub.port.B
@@ -47,7 +54,6 @@ serial.read(1000)
 serial.read(1000)
 
 #based on milan's airtable.py command set
-
 def send_messages(command_set,Field,Value,Table):
     ans = []
     command_set_put = ['headers = {"Accept"',':"applicaiton/json",','"Content-Type":"appli','cation/json","Auth','orization":"Bearer " + "', API_Key,'"}\r\n', 'urlValue ="', urlBase ,'" + "', BaseID, '" + "/" + "', Table.replace(" ","%20"), '"\r\n', 'propValue={"records"',':[{"fields":{"',Field,'":"',Value,'"} } ]}\r\n','val=urequests.post','(urlValue,headers=headers,','json=propValue).text\r\n','data=ujson.loads(val)\r\n','result=data.get(','"records")[-1]','.get("id")\r\n','print(result)\r\n']

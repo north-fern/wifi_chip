@@ -1,3 +1,12 @@
+'''
+callable python class to use the airtablef
+functions and the wifi breakoutboard
+
+makes things easier for people to use (hopefully)
+
+
+'''
+
 import hub, utime
 
 class Airtable:
