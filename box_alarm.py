@@ -4,7 +4,7 @@ serial = hub.port.B
 serial.mode(hub.port.MODE_FULL_DUPLEX)
 serial.baud(115200)
 power = hub.port.B.pwm(100)
-force = hub.port.A.device
+force = hub.port.C.device
 force.get()[0]
 
 ssid = 'FiOS-9Y9Z9'
